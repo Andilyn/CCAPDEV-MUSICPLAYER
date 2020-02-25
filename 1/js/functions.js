@@ -79,14 +79,19 @@ var _type = true;
 				$('.type_select .txt').removeClass('fl').addClass('fr').siblings('.dot').removeClass('fr').addClass('fl');
 				_type = false;
 				$('.main_content').hide();
-				$('.only_lyric_page').show();
+				$('#top-bar').show();
+				$('#lyrics').show();
+
+				// $('.only_lyric_page').show();
 
 			} else {
 
 				$('.type_select .txt').removeClass('fr').addClass('fl').siblings('.dot').removeClass('fl').addClass('fr');
 				_type = true;
 				$('.main_content').show();
-				$('.only_lyric_page').NOT('#menu').hide();
+				$('#top-bar').hide();
+				$('#lyrics').hide();
+				// $('.only_lyric_page').hide();
 				// $('.only_lyric_page').$('#player').$('#menu').show();
 
 			}

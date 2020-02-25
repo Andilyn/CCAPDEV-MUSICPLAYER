@@ -68,7 +68,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
         var b = parseInt(a/60000);
         var c = parseInt((a%60000)/1000);
         if(c < 10){ c = "0"+c; }
-        return b+":f"+c;
+        return b+":"+c;
     }
     function reset(){
         time = 0;

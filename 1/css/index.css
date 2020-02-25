@@ -464,6 +464,14 @@ html,body {
 	text-align: center;
 	line-height: 2.5;
 }
+
+#top-bar {
+	display: none;
+}
+
+#lyrics {
+	display: none;
+}
 .box_right .author_img{
 	    display: block;
     width: 186px;
