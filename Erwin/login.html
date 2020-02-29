@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Log in</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <div class="main">
+        <p class="sign" align="center">Log in</p>
+        <form class="form" name="form"">
+            <input class="user_email" name="user_email" type="text" align="center" placeholder="Username or Email"/>
+            <input class="password" name="password" type="password" align="center" placeholder="Password"/>
+            <input type="button" class="submit" name="submit" onclick="checkForm()" value="Submit">
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        
+        function checkForm(){
+            if(document.form.user_email.value == "") {
+                alert("Error: Username or Email cannot be blank!");
+                document.form.user_email.focus();
+                document.form.user_email.style = "background-color: #FF0000;";
+            } else {
+                var atsym = document.form.user_email.value.indexOf("@");
+                var dotsym = document.form.user_email.value.lastIndexOf(".");
+                if (atsym < 1 || (dotsym - atsym < 2 )) {
+                    alert("Error: Please enter a valid email address!");
+                    document.form.user_email.focus();
+                    document.form.user_email.style = "background-color: #FF0000;";			
+                }
+                else { 
+                    document.form.user_email.style = "background-color: #FFFFFF;";
+                }
+            }
+        
+            if(document.form.password.value == "") {
+                alert("Error: Password cannot be blank!");
+                document.form.password.focus();
+                document.form.password.style = "background-color: #FF0000;";
+            } else {
+                document.form.password.style = "background-color: #FFFFFF;";
+            }
+
+
+            if(document.form.user_email.value != "" && document.form.password.value != "" && (atsym > 1 && (dotsym - atsym > 2))) {
+                if(document.form.user_email.value == "admin@yahoo.com")
+                    $(location).attr('href', 'admin.html');
+                else
+                    $(location).attr('href', 'index.html');
+		    }
+        }
+
+    </script>
+</body>
+
+</html>
+
+<!-- <button type="submit" class="submit">Submit</button> -->
+<!-- <p class="forgot" align="center"><a href="#">Forgot Password?</p> -->
+
+<!-- function IsEmpty(objectfield, stringfield) {
+    objectvalue = objectfield.value.length;
+    if (objectvalue == "") {
+        alert("Oops.. Please fill out the value of " + stringfield);
+        objectfield.style.background = 'Red';
+        return false;
+    } else
+        return true;
+}
+
+function ValidateEmail(inputText) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (inputText.value.match(mailformat)) {
+        document.form1.user_email.focus();
+        return true;
+    } else {
+        alert("You have entered an invalid email address!");
+        document.form1.user_email.focus();
+        return false;
+    }
+}
+
+function validate_email(field, alerttxt)
+{
+    with (field)
+    {
+        atpos = value.indexOf("@");
+        dotpos = value.lastIndexOf(".");
+        if (atpos < 1 || dotpos - apos < 2) {
+            alert(alerttxt);
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+function CheckForm() {
+    validate_email(document.form1.user_email);
+} -->
