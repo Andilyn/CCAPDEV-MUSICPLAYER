@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<title>Music</title>
         <link rel="stylesheet" type="text/css" href="css/default.css" />
-        <link rel="stylesheet" type="text/css" href="css/MainPage.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/MainPage.css" /> -->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/checkbox.css" />
-		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_830700_8ku9990wwlq.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_830700_8ku9990wwlq.css" /> -->
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="./style.css">
         <!-- <script src="./script.js"></script> -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	</head>
-
+ <!-- {"json":"https://jewel998.github.io/playlist/data/Daughter-Shallows.json","audio":"https://jewel998.github.io/playlist/music/Daughter-Shallows.mp3"} -->
 	<body>
 		<div class="container clearfix playbox">
 			<div class="main_content clearfix">
@@ -33,9 +33,9 @@
                             <span class="state"> <input type="checkbox" class ="css-checkbox" name="checkboxG2" id="checkboxG2" value="" />
                                 <label for="checkboxG2" class="css-label song_name"></label>
                                 </span>
-                            <span class="name"><span class="song_name" >ABC</span></span>
-							<span class="author">DEF</span>
-							<span class="time">04:43</span>
+                            <span class="name"><span class="song_name" >Shallows</span></span>
+							<span class="author">Daugther</span>
+							<span class="time">06:53</span>
                             </li>
                             
 						</ul>
@@ -47,10 +47,11 @@
 				</div>
 				<div class="box_right fr">
 					<div class="album_img">
-						<a href="javascript:;" class="author_img"><img src="img/mht.jpg" width="186" height="186" /></a>
+                        <!-- <a href="javascript:;" class="author_img"><img src="img/mht.jpg" width="186" height="186" /></a> -->
+                        <a href="javascript:;" class="author_img"><img src="https://i.ytimg.com/vi/9We_FVksG2w/hqdefault.jpg" width="186" height="186" /></a>
 					</div>
-					<p><span>歌曲名</span><span class="name">偿还</span></p>
-					<p><span>歌手名</span><span class="author">邓丽君</span></p>
+					<p><span>Title</span><span class="name">Shallows</span></p>
+					<p><span>Singer</span><span class="author">Daugther</span></p>
 					<!--<p><span>歌手名</span><span class="album"></span></p>-->
 					<div class="song_info__lyric">
 						<!--<p class="text"></p>-->
@@ -62,7 +63,7 @@
 			
         </div>
         <div class="only_lyric_page" id="music-player">
-            <img id="album-art"/>
+            <img id="album-art" />
             <div id="top-bar">
               <button id="back"><i class="fa fa-arrow-left"></i></button>
               <div id="about-song"><h2 class="song-name"></h2><h4 class="artist-name"></h4></div>
@@ -93,7 +94,7 @@
                     <button id="next"><i class="fa fa-step-forward"></i></button>
                     <button id="shuffle" style="color:grey"><i class="fa fa-random"></i></button>
                     <a href="javascript:;" class="type_select clearfix" style = "float:right">
-                        <span class="txt fl">Lyrics</span>
+                        <span class="txt fl" style="font-size: small;">Lyrics</span>
                         <span id="" class="dot fr">
                         </span>
                     </a>

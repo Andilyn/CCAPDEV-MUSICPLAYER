@@ -72,33 +72,10 @@ var _type = true;
 		}
 
 		//播放界面模式切换
-		$('.type_select').click(function() {
+		
+		
+		
 
-			if(_type) {
-
-				$('.type_select .txt').removeClass('fl').addClass('fr').siblings('.dot').removeClass('fr').addClass('fl');
-				_type = false;
-				$('.main_content').hide();
-				$('#top-bar').show();
-				$('#lyrics').show();
-
-				// $('.only_lyric_page').show();
-
-			} else {
-
-				$('.type_select .txt').removeClass('fr').addClass('fl').siblings('.dot').removeClass('fl').addClass('fr');
-				_type = true;
-				$('.main_content').show();
-				$('#top-bar').hide();
-				$('#lyrics').hide();
-				// $('.only_lyric_page').hide();
-				// $('.only_lyric_page').$('#player').$('#menu').show();
-
-			}
-
-			console.log(_type);
-        });
-        
 		$.ajax({
 			type: "get",
 			url: "data/music.json",

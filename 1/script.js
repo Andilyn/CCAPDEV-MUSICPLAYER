@@ -5,8 +5,9 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
     };
 });
 var buttonColorOnPress = "white";
+var _type = true;
 $(document).ready(function(){
-$.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
+$.getJSON('js/playlist.json',function(data){
     var abort_other_json;
     var playlist = data;
     var index = 0;
@@ -23,6 +24,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
     var previousTime;
     var safeKill = 0;
     var audio = document.getElementById('audioFile');
+
     function centerize() {
         if(play == 0) return;
         if($(".current").length == 0) return;
@@ -34,12 +36,14 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             {scrollTop: e + "px"}, {easing: "swing", duration: 500}
         );
     }
+
     function next(){
         var current = $('#lyrics .current');
         if(current.length == 0){ $('#lyrics-content h2:nth-child(1)').addClass("current"); return; }
         current.removeClass('current');
         current.next().addClass('current');
     }
+
     function previous(){
         var current = $('#lyrics .current');
         if(current.length == 0){ return; }
@@ -48,32 +52,38 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
         if(current === first){ return; }
         current.prev().addClass('current');
     }
+
     function setSongName(songName){
         var context = $('.song-name');
         for(var i=0;i<context.length;i++){
             context[i].innerHTML = songName;
         }
     }
+
     function setArtistName(artistName){
         var context = $('.artist-name');
         for(var i=0;i<context.length;i++){
             context[i].innerHTML = artistName;
         }
     }
+
     function setAlbumArt(albumart){
         var context = $('#album-art');
         context.attr("src",albumart);
     }
+
     function processTime(a){
         var b = parseInt(a/60000);
         var c = parseInt((a%60000)/1000);
         if(c < 10){ c = "0"+c; }
         return b+":"+c;
     }
+
     function reset(){
         time = 0;
         audio.currentTime = 0;
     }
+
     function playSong(){
         if(play==0){
             play = 1;
@@ -81,8 +91,11 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             $('#menu button#play i').removeClass("fa-play");$('#menu button#play i').addClass("fa-pause");}
         else{play = 0;audio.pause();$('#menu button#play i').removeClass("fa-pause");$('#menu button#play i').addClass("fa-play");}
     }
+
     function processing(data){
-        if(data.author == ""){ data.author = "Unknown"; }
+        console.log("DATA " + data);
+        if(data.author == ""){ 
+            data.author = "Unknown"; }
         setSongName(data.song);
         setArtistName(data.author);
         setAlbumArt(data.albumart);
@@ -98,6 +111,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
         var percent = time/totalTime * 100;
         $('#progress').css("width",percent+"%");
     }
+
     $('#progress-bar').on('mousedown',function(){
         $('#progress-bar').on('mousemove',function handler(event){
           event.preventDefault;
@@ -109,6 +123,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
           audio.currentTime = parseInt(time/1000);
         });
     });
+
     $('#progressButton').on('mousedown',function(){
         $('#progress-bar').on('mousemove',function handler(event){
           event.preventDefault;
@@ -120,12 +135,15 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
           audio.currentTime = parseInt(time/1000);
         });
     });
+
     $('#progress-bar').mouseup(function(){
         $('#progress-bar').off('mousemove');
     });
+
     $('#progressButton').mouseup(function(){
         $('#progress-bar').off('mousemove');
     });
+
     function rewind5s(){
         if(time > 5000)
             time = time - 5000;
@@ -133,6 +151,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             time = 0;
         audio.currentTime = parseInt(time/1000);
     }
+
     function forward5s(){
         if((time+5000) < totalTime)
             time = time + 5000;
@@ -140,6 +159,7 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             time = totalTime;
         audio.currentTime = parseInt(time/1000);
     }
+
     $(document).bind('keydown',function(event){
         switch(event.keyCode){
             case 37:
@@ -150,7 +170,37 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             break;
         }
     });
-    function toggleRepeat(){if(songRepeat == 0){$('#repeat').css("color",buttonColorOnPress);songRepeat=1;}else{$('#repeat').css("color","grey");songRepeat=0;}}function toggleShuffle(){if(songShuffle == 0){$('#shuffle').css("color",buttonColorOnPress);songShuffle = 1;}else{$('#shuffle').css("color","grey");songShuffle = 0;}}function toggleMute(){if(mute == 0){mute=1;audio.volume = 0;}else{mute = 0;audio.volume = 1;}}
+
+    function toggleRepeat(){
+        if(songRepeat == 0){
+            $('#repeat').css("color",buttonColorOnPress);
+            songRepeat=1;
+        }else{
+            $('#repeat').css("color","grey");
+            songRepeat=0;
+        }
+    }
+        
+    function toggleShuffle(){
+        if(songShuffle == 0){
+            $('#shuffle').css("color",buttonColorOnPress);
+            songShuffle = 1;
+        }else{
+            $('#shuffle').css("color","grey");
+            songShuffle = 0;
+        }
+    }
+    
+    function toggleMute(){
+        if(mute == 0){
+            mute=1;
+            audio.volume = 0;
+        }else{
+            mute = 0;
+            audio.volume = 1;
+        }
+    }
+
     $(document).bind('keypress',function(event){
         //console.log(event.keyCode);
         switch(event.keyCode){
@@ -168,82 +218,253 @@ $.getJSON('https://jewel998.github.io/playlist/playlist.json',function(data){
             break;
         }
     });
+
     function prevSong(){
-        if(abort_other_json){abort_other_json.abort();}reset();timeList=[];previousTime=0;counter=0;
+        if(abort_other_json){
+            abort_other_json.abort();
+        }
+        reset();
+        timeList=[];
+        previousTime=0;
+        counter=0;
         clearInterval(stopTimer);
         index = (index-1)%playlist.songs.length;
         indexing = playlist.songs[index];
         $('#audioFile').attr('src',indexing.audio);
         loadSong();
     }
+
     function nextSong(){
-        if(abort_other_json){abort_other_json.abort();}reset();timeList=[];previousTime=0;counter=0;
+        if(abort_other_json){
+            abort_other_json.abort();
+        }
+        reset();
+        timeList=[];
+        previousTime=0;
+        counter=0;
         clearInterval(stopTimer);
         index = (index+1)%playlist.songs.length;
         indexing = playlist.songs[index];
         $('#audioFile').attr('src',indexing.audio);
         loadSong(); 
     }
+
     function updateTimer(data){
-        if(totalTime == 0 || isNaN(totalTime)){totalTime = parseInt((audio.duration * 1000));processing(data);}
+        if(totalTime == 0 || isNaN(totalTime)){
+            totalTime = parseInt((audio.duration * 1000));
+            processing(data);
+        }
         //for the end of the song
-        if(time >= totalTime){if(play == 0) return; playSong(); if(songRepeat == 1){ reset(); playSong(); return; }else{ nextSong(); playSong(); } return;}
+        if(time >= totalTime){
+            if(play == 0) return; 
+            playSong(); 
+            if(songRepeat == 1){ 
+                reset(); 
+                playSong(); 
+                return; 
+            }else{ 
+                nextSong(); 
+                playSong(); 
+            } 
+            return;
+        }
+
         //update timer
-        if(play == 1){time = time + 1000;}
-        else if(play == -1){time = 0;}
+        if(play == 1){
+            time = time + 1000;
+        }
+        else if(play == -1){
+            time = 0;
+        }
+
         //upadate time on the progress bar
-        if(audio.currentTime != previousTime){previousTime=audio.currentTime;$('#currentTime').html(processTime(time));var percent = time/totalTime * 100;$('#progress').css("width",percent+"%");}
-        else{ time = parseInt(audio.currentTime*1000);if(time>100)time=time-100;if(play==1){audio.pause();if(audio.readyState == 4){audio.play();}} }
+        if(audio.currentTime != previousTime){
+            previousTime=audio.currentTime;
+            $('#currentTime').html(processTime(time));
+            var percent = time/totalTime * 100;
+            $('#progress').css("width",percent+"%");
+        }else{ 
+            time = parseInt(audio.currentTime*1000);
+            if(time>100)
+                time=time-100;
+            if(play==1){
+                audio.pause();
+                if(audio.readyState == 4){
+                    audio.play();
+                }
+            } 
+        }
+
         safeKill = 0;
         while(true){
             safeKill += 1;
-            if(safeKill >= 100) break;
-            if(counter == 0){if(time < timeList[counter]){previous();break;}}
-            if((counter == timeList.length) && (time <= timeList[counter-1])){counter--;previous();}
-            if(time >= timeList[counter]){if(counter<=timeList.length){counter++;}next();}
-            else if(time < timeList[counter-1]){counter--;previous();}
-            else{if(play == 1 && !audio.paused && !audio.ended)centerize();break;}
+            if(safeKill >= 100) 
+                break;
+            if(counter == 0){
+                if(time < timeList[counter]){
+                    previous();
+                    break;
+                }
+            }
+
+            if((counter == timeList.length) && (time <= timeList[counter-1])){
+                counter--;
+                previous();
+            }
+
+            if(time >= timeList[counter]){
+                if(counter<=timeList.length){
+                    counter++;
+                }next();
+            }else if(time < timeList[counter-1]){
+                counter--;
+                previous();
+            }else{
+                if(play == 1 && !audio.paused && !audio.ended)centerize();
+                break;
+            }
         }
     }
+
     function loadSong(){
         $('#audioFile').attr('src',indexing.audio);
+        console.log(indexing.audio + " audio");
         abort_other_json = $.getJSON(indexing.json,function(data){
             processing(data);
             totalTime = NaN;
             stopTimer = setInterval(function(){updateTimer(data);},1000);
         });
     }
+
     loadSong();
+
     $('#prev').on('click',prevSong);
     $('#next').on('click',nextSong);
     $('#play').on('click',playSong);
     $('#repeat').on('click',toggleRepeat);
     $('#shuffle').on('click',toggleShuffle);
+
     function playSongAtIndex(data){
         if(data == index) return;
         if(index >= playlist.songs.length) return;
-        if(abort_other_json){abort_other_json.abort();reset();clearInterval(stopTimer);timeList=[];previousTime=0;counter=0;}
+        if(abort_other_json){
+            abort_other_json.abort();
+            reset();
+            clearInterval(stopTimer);
+            timeList=[];
+            previousTime=0;
+            counter=0;
+        }
         index = data;
         indexing = playlist.songs[index];
         $('#audioFile').attr('src',indexing.audio);
         loadSong();
     }
+
     function addToPlayList(data,index){
-        var html = "";html = $('#show-list').html();html +="<div class=\"float-song-card\" data-index=\""+index+"\"><img class=\"album-art\" src=\""+data.albumart+"\"><h2 class=\"song\">"+data.song+"</h2><h4 class=\"artist\">"+data.author+"</h4></div>";$('#show-list').html(html);$('.float-song-card').on('click',function(){playSongAtIndex($(this).attr("data-index"));});
+        var html = "";
+        html = $('#show-list').html();
+        html +="<div class=\"float-song-card\" data-index=\""
+            +index+"\"><img class=\"album-art\" style= \" display: block\" src=\""
+            +data.albumart+"\"><h2 class=\"song\">"
+            +data.song+"</h2><h4 class=\"artist\">"
+            +data.author+"</h4></div>";
+            console.log("ADDED " + index);
+        
+        $('#show-list').html(html);
+        $('.float-song-card').on('click',function(){
+            playSongAtIndex($(this).attr("data-index"));
+        });
+        
     }
     function setPlaylist(){
-        for(var i=0;i<playlist.songs.length;i++){
-            $.getJSON(playlist.songs[i].json,function(i){ return function(data){addToPlayList(data,i)}; }(i));
+        for( var i = 0; i < playlist.songs.length;i++){
+            $.getJSON(playlist.songs[i].json,function(i){ 
+                console.log(playlist.songs[i].json + " JSON"  + i);
+                return function(data){
+                    addToPlayList(data,i)}; 
+                }(i));
         }
     }
+    function setPlaylist2(){
+        for( var i = 0; i < playlist.songs.length - 1;i++){
+            $.getJSON(playlist.songs[i].json,function(i){ 
+                console.log(playlist.songs[i].json + " JSON"  + i);
+                return function(data){
+                    addToPlayList2(data,i)}; 
+                }(i));
+        }
+    }
+
+
+    $('.type_select').click(function() {
+
+        if(_type) {
+
+            $('.type_select .txt').removeClass('fl').addClass('fr').siblings('.dot').removeClass('fr').addClass('fl');
+            _type = false;
+            $('.main_content').hide();
+            $('#top-bar').show();
+            $('#lyrics').show();
+            $('#album-art').show();
+
+            // $('.only_lyric_page').show();
+
+        } else {
+
+            $('.type_select .txt').removeClass('fr').addClass('fl').siblings('.dot').removeClass('fl').addClass('fr');
+            _type = true;
+            $('.main_content').show();
+            $('#top-bar').hide();
+            $('#lyrics').hide();
+            $('#album-art').hide();
+            // $('.only_lyric_page').hide();
+            // $('.only_lyric_page').$('#player').$('#menu').show();
+
+        }
+
+        console.log(_type);
+    });
+
+    $('#album-art').hide();
+
+
+    //   {"json":"https://jewel998.github.io/playlist/data/Daughter-Shallows.json","audio":"https://jewel998.github.io/playlist/music/Daughter-Shallows.mp3"}
+    $('#checkboxG2').click(function() {
+        
+        $("#checkboxG2").each(function(){
+            if($(this).is(":checked")){
+                console.log('CHECKED');
+                $('.float-song-card[data-index=8]').show();
+                // var d = 'https://jewel998.github.io/playlist/data/Daughter-Shallows.json';
+                // addToPlayList(d, playlist.songs.length);
+                // $('#audioFile').attr('src','https://jewel998.github.io/playlist/music/Daughter-Shallows.mp3');
+                // $.getJSON( "js/playlist.json", function( data ) {
+                //     var d = {"json":"https://jewel998.github.io/playlist/data/Daughter-Shallows.json","audio":"https://jewel998.github.io/playlist/music/Daughter-Shallows.mp3"};
+                //     playlist.push(d);
+                // });
+            }
+            else{
+                $('.float-song-card[data-index=8]').hide();
+                console.log('UNCHECKED');
+            }
+
+        });
+    });
+    
     setPlaylist();
+
+$('.float-song-card[data-index=8]').hide();
 });
+
 $('#search').keyup(function(){
     var toSearch = $(this).val();
     $('.float-song-card').css("display","none");
     $('.float-song-card:contains('+toSearch+')').css("display","inline-block");
 });
+
 var togglePlaylist = 0;
+
 $('#back').on('click',function(){
   if(togglePlaylist == 0){
     $('#playlist').css("transform","translateX(0)");

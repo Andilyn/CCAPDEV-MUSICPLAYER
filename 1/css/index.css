@@ -1,9 +1,9 @@
+/* FRONT PAGE */
 html,body {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	/*background-color: rgb(224, 192, 192);*/
-	/**/
 }
 
 .mod_songlist_toolbar ul li {
@@ -46,8 +46,6 @@ html,body {
 .music_item>img {
 	margin-top: 20px;
 }
-
-
 
 .music_item>span.name {
 	margin-left: 10px;
@@ -228,8 +226,13 @@ html,body {
 	display: none;
 }
 
+/* SECOND PAGE */
 .show {
 	display: block !important;
+}
+
+#show-list{
+	font-size: medium;
 }
 
 .state_img img {
@@ -243,7 +246,7 @@ html,body {
 }
 
 .bg_player {
-	background-image: url('https://y.gtimg.cn/music/photo_new/T002R300x300M0000045vzoa4ep746.jpg?max_age=2592000');
+	/* background-image: url('https://y.gtimg.cn/music/photo_new/T002R300x300M0000045vzoa4ep746.jpg?max_age=2592000'); */
 	display: block;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -341,7 +344,7 @@ html,body {
 }
 
 .author_img:after {
-	    content: '';
+	content: '';
     width: 201px;
     height: 180px;
     background: url(../img/album_cover_player.png) no-repeat;
@@ -472,6 +475,7 @@ html,body {
 #lyrics {
 	display: none;
 }
+
 .box_right .author_img{
 	    display: block;
     width: 186px;
@@ -479,7 +483,7 @@ html,body {
     border-radius: 100%;
     overflow: hidden;
     margin-left: 52px;
-	/*animation:circle 20s infinite linear;*/
+	animation:circle 20s infinite linear;
 	/*选择动画，circle；时间；无限循环；线性变化*/
 	
 }
