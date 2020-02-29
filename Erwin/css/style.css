@@ -18,9 +18,30 @@
   -webkit-box-pack: center;
           justify-content: center;
   min-height: 100vh;
-  background-color: #FFFFFF;
-  -webkit-transition: background-color 200ms;
+  overflow: hidden;
+  background-image: url('../images/bg-01.jpg');
+  background-size:100% 100%;
+  background-repeat: no-repeat;
+  /* background-color: #FFFFFF;
+  color: #fff;
+  background: rgb(140,0,255);
+  background: linear-gradient(90deg, rgba(140, 0, 255,1) 0%, rgba(232, 0, 211, 1) 20%, rgba(209, 0, 222, 1) 40%, rgba(186, 0, 233,1) 60%, rgba(163, 0, 244, 1) 80%, rgba(255,0,200, 1) 100%);
+  background: rgb(245,0,252);
+  background: linear-gradient(90deg, rgba(245,0,252,1) 0%, rgba(255,239,0,1) 50%, rgba(0,245,255,1) 100%);
+  background: rgb(120,252,0);
+  background: linear-gradient(90deg, rgba(120,252,0,1) 0%, rgba(255,239,0,1) 50%, rgba(0,255,230,1) 100%);
+  background: -webkit-linear-gradient(110deg, #0afc00 33%, rgba(0, 0, 0, 0) 33%), -webkit-linear-gradient(110deg, #00ffe6 66%, #ffc608 66%);
+  background: -o-linear-gradient(110deg, #0afc00 33%, rgba(0, 0, 0, 0) 33%), -o-linear-gradient(110deg, #00ffe6 66%, #ffc608 66%);
+  background: -moz-linear-gradient(110deg, #0afc00 33%, rgba(0, 0, 0, 0) 33%), -moz-linear-gradient(110deg, #00ffe6 66%, #ffc608 66%);
+  background: linear-gradient(110deg, #0afc00 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #00ffe6 66%, #ffc608 66%); */
   transition: background-color 200ms;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .checkbox.theme-toggle__checkbox:checked + label:after {
@@ -35,22 +56,26 @@
 .theme-toggle__checkbox:checked ~ label {
   color: #4c4f59;
 }
+
 .theme-toggle__checkbox:checked ~ label:before {
   background-color: #292a30;
 }
+
 .theme-toggle__checkbox:checked ~ label:before, .theme-toggle__checkbox:checked ~ label:after {
   border-color: #4c4f59;
 }
+
 .theme-toggle__checkbox:checked ~ main {
   background-color: #1D1E22;
 }
-.theme-toggle__checkbox:checked ~ main .infinity__outline {
+
+/* .theme-toggle__checkbox:checked ~ main .infinity__outline {
   stroke: #111214;
 }
 
 .outline-toggle__checkbox:checked ~ main .infinity__outline {
   opacity: 0;
-}
+} */
 
 .label {
   position: absolute;
@@ -98,11 +123,14 @@
   box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 4px;
 }
 
-.infinity {
+/* .infinity {
   position: absolute;
   width: 100%;
+  top: 100%;
+  transform: translateY(-100%);
   max-width: 800px;
 }
+
 .infinity path {
   fill: none;
   stroke-width: 10;
@@ -222,4 +250,4 @@
     -webkit-transform: translateY(2px) scale(1.02);
             transform: translateY(2px) scale(1.02);
   }
-}
+} */
