@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>Music</title>
+        <link rel="stylesheet" type="text/css" href="css/default.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/MainPage.css" /> -->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/checkbox.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_830700_8ku9990wwlq.css" /> -->
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="css/playlist.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	</head>
+ <!-- {"json":"https://jewel998.github.io/playlist/data/Daughter-Shallows.json","audio":"https://jewel998.github.io/playlist/music/Daughter-Shallows.mp3"} -->
+	<body>
+		<div class="container clearfix playbox">
+			<div class="main_content clearfix">
+				<div class="box_left fl">
+					<div class="music_list fl" id="music_list">
+						<ul class="fl">
+							<li id="songlist__header" class="clearfix border-top">
+								<span class="song_name">Title</span>
+								<span class="author">Singer</span>
+								<span class="time">Duration</span>
+							</li>
+							<li class="music_item clearfix border-top">
+                            
+                            <span class="state"> <input type="checkbox" class ="css-checkbox" name="checkboxG2" id="checkboxG2" value="" />
+                                <label for="checkboxG2" class="css-label song_name"></label>
+                                </span>
+                            <span class="name"><span class="song_name" >Shallows</span></span>
+							<span class="author">Daugther</span>
+							<span class="time">06:53</span>
+                            </li>
+                            
+						</ul>
+
+					</div>
+					<div class="scroll_bar fl" id="">
+						<span class="bar"></span>
+					</div>
+				</div>
+				<div class="box_right fr">
+					<div class="album_img">
+                        <!-- <a href="javascript:;" class="author_img"><img src="img/mht.jpg" width="186" height="186" /></a> -->
+                        <a href="javascript:;" class="author_img"><img src="https://i.ytimg.com/vi/9We_FVksG2w/hqdefault.jpg" width="186" height="186" /></a>
+					</div>
+					<p><span>Title</span><span class="name">Shallows</span></p>
+					<p><span>Singer</span><span class="author">Daugther</span></p>
+					<!--<p><span>歌手名</span><span class="album"></span></p>-->
+					<div class="song_info__lyric">
+						<!--<p class="text"></p>-->
+					</div>
+				</div>
+
+			</div>
+            </div>           
+			
+        </div>
+        <div class="only_lyric_page" id="music-player">
+            <img id="album-art" />
+            <div id="top-bar">
+              <button id="back"><i class="fa fa-arrow-left"></i></button>
+              <div id="about-song">
+                <h2 class="song-name"></h2>
+                <h4 class="artist-name"></h4>
+                </div>
+            </div>
+
+            <div id="lyrics">
+                <h2 class="song-name"></h2>
+                <h4 class="artist-name"></h4>
+                <div id="lyrics-content"></div>
+            </div>
+
+            <audio id="audioFile" preload="true"></audio>
+
+            <div id="player">
+                <div id="bar">
+                    <div id="currentTime"></div>
+                    <div id="progress-bar">
+                        <div id="progress"><i id="progressButton" class="fa fa-circle"></i>
+                        </div>
+                    </div>
+                    <div id="totalTime"></div>
+                </div>
+
+                <div id="menu">
+                    
+                    <button id="repeat" style="color:grey"><i class="fa fa-repeat"></i></button>
+                    <button id="prev"><i class="fa fa-step-backward"></i></button>
+                    <button id="play"><i class="fa fa-play"></i></button>
+                    <button id="next"><i class="fa fa-step-forward"></i></button>
+                    <button id="shuffle" style="color:grey"><i class="fa fa-random"></i></button>
+                    <a href="javascript:;" class="type_select clearfix" style = "float:right">
+                        <span class="txt fl" style="font-size: small;">Lyrics</span>
+                        <span id="" class="dot fr">
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="playlist">
+              <div id="label">
+                <h1>Playlist</h1>
+                <input id="search" type="text" placeholder="&#xF002; Search from all songs"></input>
+              </div>
+              <div id="show-box">
+                <div id="show-list">
+                </div>
+              </div>
+            </div>
+        </div>
+
+		<div class="bg_player_mask"></div>
+		<div class="bg_player" id="bg_player"></div>
+
+	</body>
+	<script src="js/functions.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script  src="js/playlist.js"></script>
+
+</html>
