@@ -27,38 +27,40 @@
             <input type="password" name="cpw" id="cpw" align="center" placeholder="Confirm Password">
             <input type="button" class="submit" onclick="checkForm()" value="Sign Up">
         </form>
+        <span id="displayError"></span>
     </div>
 
-
     <script type="text/javascript">
-
         function checkForm()
         {
             if(document.form.fname.value == "") {
-                alert("Error: First name cannot be blank!");
+                $("#displayError").text("Error: First name cannot be blank!");
                 document.form.fname.focus();
                 document.form.fname.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.fname.style = "background-color: #FFFFFF;";
             }
 
             if(document.form.lname.value == "") {
-                alert("Error: Last name cannot be blank!");
+                $("#displayError").text("Error: Last name cannot be blank!");
                 document.form.lname.focus();
                 document.form.lname.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.lname.style = "background-color: #FFFFFF;";
             }
             
             if(document.form.email.value == "") {
-                alert("Error: Email cannot be blank!");
+                $("#displayError").text("Error: Email cannot be blank!");
                 document.form.email.focus();
                 document.form.email.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 atsym = document.form.email.value.indexOf("@");
                 dotsym = document.form.email.value.lastIndexOf(".");
                 if (atsym < 1 || (dotsym - atsym < 2 )) {
-                    alert("Error: Please enter a valid email address!");
+                    $("#displayError").text("Error: Please enter a valid email address!");
                     document.form.email.focus();
                     document.form.email.style = "background-color: #FF0000;";			
                 }
@@ -68,31 +70,34 @@
             }
 
             if(document.form.uname.value == "") {
-                alert("Error: Username name cannot be blank!");
+                $("#displayError").text("Error: Username cannot be blank!");
                 document.form.uname.focus();
                 document.form.uname.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.uname.style = "background-color: #FFFFFF;";
             }
 
             if(document.form.pw.value == "") {
-                alert("Error: Password cannot be blank!");
+                $("#displayError").text("Error: Password cannot be blank!");
                 document.form.pw.focus();
                 document.form.pw.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.pw.style = "background-color: #FFFFFF;";
             }
         
             if(document.form.cpw.value == "") {
-                alert("Error: Confirm password cannot be blank!");
+                $("#displayError").text("Error: Confirm Password cannot be blank!");
                 document.form.cpw.focus();
                 document.form.cpw.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.cpw.style = "background-color: #FFFFFF;";
             }
         
             if(document.form.pw.value != "" && document.form.pw.value != document.form.cpw.value) {
-                alert("Error: Password and Confirm Password does not match!");
+                $("#displayError").text("Error: Password and Confirm Password does not match!");
                 document.form.pw.focus();
                 document.form.pw.style = "background-color: #FF0000;";
                 document.form.cpw.style = "background-color: #FF0000;";
@@ -101,11 +106,11 @@
             if(document.form.fname.value != "" && document.form.lname.value != "" &&  document.form.uname.value != "" && 
             document.form.email.value != "" && document.form.pw.value != "" && document.form.cpw.value!= "" && 
             document.form.pw.value == document.form.cpw.value && (atsym > 1 && (dotsym - atsym > 2))) {
+                $("#displayError").text("");
                 alert("Registration Successful, Sir/Madam " + document.form.fname.value + " " + document.form.lname.value + ".");
                 $(location).attr('href', 'index.html');
             }
 		}	
     </script>
 </body>
-
 </html>

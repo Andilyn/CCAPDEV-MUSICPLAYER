@@ -17,21 +17,21 @@
             <input class="password" name="password" type="password" align="center" placeholder="Password"/>
             <input type="button" class="submit" name="submit" onclick="checkForm()" value="Log in">
         </form>
+        <span id="displayError"></span>
     </div>
 
-
     <script type="text/javascript">
-        
         function checkForm(){
             if(document.form.user_email.value == "") {
-                alert("Error: Username or Email cannot be blank!");
+                $("#displayError").text("Error: Username or Email cannot be blank!");
                 document.form.user_email.focus();
                 document.form.user_email.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 var atsym = document.form.user_email.value.indexOf("@");
                 var dotsym = document.form.user_email.value.lastIndexOf(".");
-                if (atsym < 1 || (dotsym - atsym < 2 )) {
-                    alert("Error: Please enter a valid email address!");
+                if(atsym < 1 || (dotsym - atsym < 2 )) {
+                    $("#displayError").text("Error: Please enter a valid email address!");
                     document.form.user_email.focus();
                     document.form.user_email.style = "background-color: #FF0000;";			
                 }
@@ -41,15 +41,17 @@
             }
         
             if(document.form.password.value == "") {
-                alert("Error: Password cannot be blank!");
+                $("#displayError").text("Error: Password cannot be blank!");
                 document.form.password.focus();
                 document.form.password.style = "background-color: #FF0000;";
-            } else {
+            } 
+            else {
                 document.form.password.style = "background-color: #FFFFFF;";
             }
 
 
             if(document.form.user_email.value != "" && document.form.password.value != "" && (atsym > 1 && (dotsym - atsym > 2))) {
+                $("#displayError").text("");
                 if(document.form.user_email.value == "admin@yahoo.com")
                     $(location).attr('href', 'upload.html');
                 else
@@ -59,7 +61,6 @@
 
     </script>
 </body>
-
 </html>
 
 <!-- <button type="submit" class="submit">Submit</button> -->
